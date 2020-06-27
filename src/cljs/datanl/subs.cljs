@@ -6,3 +6,8 @@
  ::name
  (fn [db]
    (:name db)))
+
+(re-frame/reg-sub
+ ::field-value
+ (fn [db]
+   (:new-form db)))
