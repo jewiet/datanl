@@ -10,9 +10,12 @@
                  [day8.re-frame/tracing "0.5.5"]
                  [garden "1.3.10"]
                  [ns-tracker "0.4.0"]
+                 [cljs-ajax "0.7.5"]
+                 [cuerdas "0.3.2"]
                  [compojure "1.6.1"]
                  [yogthos/config "1.1.7"]
-                 [ring "1.8.1"]]
+                 [ring "1.8.1"]
+                 [tupelo "0.9.214"]]
 
   :plugins [[lein-shadow "0.2.0"]
             [lein-garden "0.3.0"]
