@@ -3,11 +3,12 @@
 /target/
 /*-init.clj
 /*.log
-
+/.idea/
 # Leiningen
 /.lein-*
 /.nrepl-port
 
+.DS_Store
 # Node.js dependencies
 /node_modules/
 

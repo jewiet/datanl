@@ -12,7 +12,9 @@
                  [ns-tracker "0.4.0"]
                  [compojure "1.6.1"]
                  [yogthos/config "1.1.7"]
-                 [ring "1.8.1"]]
+                 [ring "1.8.1"]
+                 [cljs-ajax "0.8.0"]
+                 [stylefy "2.2.1"]]
 
   :plugins [[lein-shadow "0.2.0"]
             [lein-garden "0.3.0"]
@@ -57,8 +59,8 @@
 
                                :devtools {:http-root "resources/public"
                                           :http-port 8280
-                                          :http-handler datanl.handler/dev-handler
-                                          }}
+                                          :http-handler datanl.handler/dev-handler}}
+                                          
                          :browser-test
                          {:target :browser-test
                           :ns-regexp "-test$"

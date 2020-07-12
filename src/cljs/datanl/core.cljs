@@ -6,7 +6,8 @@
    [datanl.events :as events]
    [datanl.views :as views]
    [datanl.config :as config]
-   ))
+   [stylefy.core :as stylefy]))
+   
 
 
 (defn dev-setup []
@@ -20,6 +21,7 @@
     (rdom/render [views/main-panel] root-el)))
 
 (defn init []
+  (stylefy/init)
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
   (mount-root))
