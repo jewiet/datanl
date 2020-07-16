@@ -15,15 +15,13 @@
       [:label "Label"]
       [:input
        {:type      "text"
-        :value     @label-field-value}]
-      :on-change #(re-frame/dispatch [::set-field-value  (-> % .-target .-value)])]]))
+        :value     @label-field-value
+        :on-change #(re-frame/dispatch [::set-field-value  (-> % .-target .-value)])}]]]))
 
 (defonce result (atom ""))
 
 (defn handler [response]
   (reset! result response))  ;(js->clj response :keywordize-keys true)))
-
-
 
 (defn error-handler [error]
   (.log js/console (str "something bad happened: " error)))
@@ -44,19 +42,17 @@
 
 
 (defn card2 [img-n]
-  [:div.card.col-4
+  [:div.card.col-3
    [:img.card-img-top {:alt "Card image cap", :src (str "https://picsum.photos/400?random=" img-n)}]
    [:div.card-body
     [:h5.card-title (.companyName (.-company faker))]
-   ; [:h6.card-subtitle.mb-2.text-muted "Card subtitle"]
     [:p.card-text (.catchPhrase (.-company faker))]
     [:a.card-link {:href "#"} (.jobTitle (.-name faker))]]])
-    ;[:a.card-link {:href "#"} "Another link"]]])
 
 (defn get-random-images []
   [:div {:class "row align-items-center"}
     (map card2 (range 9))])
-[:img {:src "images/logo.png" :class "header-itema" :style {:max-width "25%"}}]
+
 (defn navbar []
   [:nav.navbar.navbar-expand-lg.navbar-light.bg-light
    [:a.navbar-brand
@@ -88,6 +84,30 @@
       {:type "submit"}
       "Search"]]]])
 
+(defn login-input [val]
+  [:input.form-control {:value @val
+                        :on-change #(reset! val (-> % .-target .-value))}])
+  
+(defn login []
+  (let [credentials (reagent/atom nil)] ;{:username nil :password nil})]
+   (fn []
+    [:form
+     [login-input credentials]
+     [:p @credentials]
+     [:div.form-group
+      [:label {:for "exampleInputEmail1"} "Email address"]
+      [:input#exampleInputEmail1.form-control
+       {:aria-describedby "emailHelp", :type "email"}]
+      [:small#emailHelp.form-text.text-muted
+       "We'll never share your email with anyone else."]]
+     [:div.form-group
+      [:label {:for "exampleInputPassword1"} "Password"]
+      [:input#exampleInputPassword1.form-control {:type "password"}]]
+     [:div.form-group.form-check
+      [:input#exampleCheck1.form-check-input {:type "checkbox"}]
+      [:label.form-check-label {:for "exampleCheck1"} "Check me out"]]
+     [:button.btn.btn-primary {:type "submit"} "Submit"]])))
+
 
 (defn jumbo []
   [:div.jumbotron.jumbotron-fluid
@@ -115,7 +135,7 @@
   (let [name (re-frame/subscribe [::subs/field-value])]
     
     [:div {:class "container"}
-     
+     [login]
      (comment [photo-grid])
      [navbar]
      [jumbo]

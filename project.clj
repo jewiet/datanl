@@ -18,7 +18,8 @@
 
   :plugins [[lein-shadow "0.2.0"]
             [lein-garden "0.3.0"]
-            [lein-shell "0.5.0"]]
+            [lein-shell "0.5.0"]
+            [lein-ring "0.12.5"]]
 
   :min-lein-version "2.9.0"
 
@@ -33,6 +34,8 @@
                                     "resources/public/css"]
 
 
+  :ring {:handler datanl.handler/sandler}
+  
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]
                      :stylesheet   datanl.css/screen
@@ -88,7 +91,8 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "1.0.0"]
-                   [day8.re-frame/re-frame-10x "0.6.5"]]
+                   [day8.re-frame/re-frame-10x "0.6.5"]
+                   [javax.servlet/servlet-api "2.5"]]
     :source-paths ["dev"]}
 
    :prod {}
